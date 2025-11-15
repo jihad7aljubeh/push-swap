@@ -3,78 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/09 19:27:13 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/10 00:00:00 by jalju-be         ###   ########.fr       */
+/*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
+/*   Updated: 2025/11/15 14:55:50 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_two(t_stack **a)
+static int	check_duplicates(t_stack *stack)
 {
-    if ((*a)->index > (*a)->next->index)
-        sa(a);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		j = i + 1;
+		while (j < stack->size)
+		{
+			if (stack->arr[i] == stack->arr[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
-void	sort_three(t_stack **a)
+void	parse_args(t_stack *a, int argc, char **argv)
 {
-    int	top;
-    int	mid;
-    int	bot;
+	int	i;
 
-    top = (*a)->index;
-    mid = (*a)->next->index;
-    bot = (*a)->next->next->index;
-    if (top > mid && mid < bot && top < bot)
-        sa(a);
-    else if (top > mid && mid > bot && top > bot)
-    {
-        sa(a);
-        rra(a);
-    }
-    else if (top > bot && bot > mid)
-        ra(a);
-    else if (mid > top && mid > bot && bot > top)
-    {
-        sa(a);
-        ra(a);
-    }
-    else if (mid > bot && top < mid)
-        rra(a);
-}
-
-void	radix_sort(t_stack **a, t_stack **b, int max_bits)
-{
-    int	i;
-    int	j;
-    int	size;
-
-    i = 0;
-    while (i < max_bits)
-    {
-        size = stack_size(*a);
-        j = 0;
-        while (j++ < size)
-        {
-            if ((((*a)->index >> i) & 1) == 0)
-                pb(a, b);
-            else
-                ra(a);
-        }
-        while (*b)
-            pa(a, b);
-        i++;
-    }
-}
-
-int	get_max_bits(int size)
-{
-    int	bits;
-
-    bits = 0;
-    while ((size - 1) >> bits)
-        bits++;
-    return (bits);
+	i = 1;
+	while (i < argc)
+	{
+		a->arr[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	a->size = argc - 1;
+	if (check_duplicates(a))
+		ft_error();
 }

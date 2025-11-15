@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/15 14:55:29 by jihad            ###   ########.fr       */
+/*   Updated: 2025/11/15 15:21:33 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_error(void)
 {
-	t_stack	a;
-	t_stack	b;
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
-	if (argc < 2)
-		return (0);
-	init_stack(&a, argc - 1);
-	init_stack(&b, argc - 1);
-	parse_args(&a, argc, argv);
-	if (!is_sorted(&a))
-	{
-		normalize(&a);
-		sort_stack(&a, &b);
-	}
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+void	init_stack(t_stack *stack, int capacity)
+{
+	stack->arr = malloc(sizeof(int) * capacity);
+	if (!stack->arr)
+		ft_error();
+	stack->size = 0;
+	stack->capacity = capacity;
+}
+
+void	free_stack(t_stack *stack)
+{
+	if (stack->arr)
+		free(stack->arr);
+	stack->arr = NULL;
+	stack->size = 0;
+	stack->capacity = 0;
 }

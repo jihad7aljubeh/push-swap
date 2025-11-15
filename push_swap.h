@@ -3,70 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/09 19:02:30 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/11 00:00:00 by jalju-be         ###   ########.fr       */
+/*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
+/*   Updated: 2025/11/15 14:55:49 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <limits.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <stddef.h>
+# include <stdlib.h>
 
 typedef struct s_stack
 {
-    int				value;
-    int				index;
-    struct s_stack	*next;
+	int				*arr;
+	int				size;
+	int				capacity;
 }	t_stack;
 
-/* Libft functions */
+/* Operations */
+void	sa(t_stack *a);
+void	sb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
+
+/* Sorting */
+void	sort_stack(t_stack *a, t_stack *b);
+void	sort_three(t_stack *a);
+void	sort_four(t_stack *a, t_stack *b);
+void	sort_five(t_stack *a, t_stack *b);
+void	radix_sort(t_stack *a, t_stack *b);
+
+/* Parsing */
+void	parse_args(t_stack *a, int argc, char **argv);
+
+/* Utils */
 int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-void	ft_putstr_fd(char *s, int fd);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *s);
-
-/* Push operations */
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **a, t_stack **b);
-
-/* Swap operations */
-void	sa(t_stack **a);
-void	sb(t_stack **b);
-void	ss(t_stack **a, t_stack **b);
-
-/* Shift operations (rotate) */
-void	ra(t_stack **a);
-void	rb(t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-
-/* Reverse shift operations (reverse rotate) */
-void	rra(t_stack **a);
-void	rrb(t_stack **b);
-void	rrr(t_stack **a, t_stack **b);
-
-/* Stack utils */
-int		stack_size(t_stack *stack);
+void	ft_error(void);
+void	init_stack(t_stack *stack, int capacity);
+void	free_stack(t_stack *stack);
 int		is_sorted(t_stack *stack);
-void	free_stack(t_stack **stack);
-t_stack	*stack_last(t_stack *stack);
-void	stack_add_back(t_stack **stack, t_stack *new);
-
-/* Parsing and init */
-int		init_stack(int ac, char **av, t_stack **a);
-int		error_exit(t_stack **stack);
-
-/* Sorting algorithms */
-void	sort_two(t_stack **a);
-void	sort_three(t_stack **a);
-void	sort_four_five(t_stack **a, t_stack **b);
-void	radix_sort(t_stack **a, t_stack **b, int max_bits);
-int		get_max_bits(int size);
+int		find_min_index(t_stack *stack);
+void	normalize(t_stack *stack);
 
 #endif

@@ -1,46 +1,38 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jihad <jihad@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/11/15 00:00:00 by your_login        #+#    #+#              #
+#    Updated: 2025/11/15 15:21:37 by jihad            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c \
-    push_swap.c \
-    sort_four_five.c \
-    push_op.c \
-    swap_op.c \
-    shift_op.c \
-    rev_shift_op.c \
-    stack_utils.c \
-    init_stack.c \
-    error.c \
-    ft_atoi.c \
-    ft_isdigit.c \
-    ft_putstr_fd.c \
-    ft_substr.c \
-    ft_strlen.c
+SRCS = main.c push_swap.c swap.c push.c shift.c rshift.c \
+       sort.c radix.c utils.c utils2.c atoi.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-    @echo "Linking $(NAME)..."
-    @$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-    @echo "✓ $(NAME) created successfully!"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c push_swap.h
-    @echo "Compiling $<..."
-    @$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    @echo "Cleaning object files..."
-    @rm -f $(OBJS)
-    @echo "✓ Clean complete!"
+	rm -f $(OBJS)
 
 fclean: clean
-    @echo "Removing $(NAME)..."
-    @rm -f $(NAME)
-    @echo "✓ Full clean complete!"
+	rm -f $(NAME)
 
 re: fclean all
 

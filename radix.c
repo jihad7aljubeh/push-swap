@@ -1,33 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/15 14:55:29 by jihad            ###   ########.fr       */
+/*   Updated: 2025/11/15 14:54:45 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+static int	get_max_bits(t_stack *stack)
 {
-	t_stack	a;
-	t_stack	b;
+	int	max;
+	int	bits;
 
-	if (argc < 2)
-		return (0);
-	init_stack(&a, argc - 1);
-	init_stack(&b, argc - 1);
-	parse_args(&a, argc, argv);
-	if (!is_sorted(&a))
+	max = stack->size - 1;
+	bits = 0;
+	while ((max >> bits) != 0)
+		bits++;
+	return (bits);
+}
+
+void	radix_sort(t_stack *a, t_stack *b)
+{
+	int	max_bits;
+	int	i;
+	int	j;
+	int	size;
+
+	max_bits = get_max_bits(a);
+	i = 0;
+	while (i < max_bits)
 	{
-		normalize(&a);
-		sort_stack(&a, &b);
+		size = a->size;
+		j = 0;
+		while (j < size)
+		{
+			if (((a->arr[0] >> i) & 1) == 0)
+				pb(a, b);
+			else
+				ra(a);
+			j++;
+		}
+		while (b->size > 0)
+			pa(a, b);
+		i++;
 	}
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
 }
