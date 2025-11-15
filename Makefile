@@ -6,7 +6,7 @@
 #    By: jihad <jihad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/15 00:00:00 by your_login        #+#    #+#              #
-#    Updated: 2025/11/15 15:21:37 by jihad            ###   ########.fr        #
+#    Updated: 2025/11/15 16:36:31 by jihad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,23 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "Linking $(NAME)..."
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "✓ $(NAME) created successfully!"
 
 %.o: %.c push_swap.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiling $<..."
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@echo "Cleaning object files..."
+	@rm -f $(OBJS)
+	@echo "✓ Clean complete!"
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "Removing $(NAME)..."
+	@rm -f $(NAME)
+	@echo "✓ Full clean complete!"
 
 re: fclean all
 
