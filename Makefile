@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jihad <jihad@student.42.fr>                +#+  +:+       +#+         #
+#    By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/15 00:00:00 by your_login        #+#    #+#              #
-#    Updated: 2025/11/15 16:36:31 by jihad            ###   ########.fr        #
+#    Updated: 2025/11/19 21:10:36 by jalju-be         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c push_swap.c swap.c push.c shift.c rshift.c \
-       sort.c radix.c utils.c utils2.c atoi.c
+SRCS = main.c push_swap.c swap.c push.c shift.c rshift.c radix.c \
+       sort.c utils.c utils2.c atoi.c
 
 OBJS = $(SRCS:.c=.o)
 

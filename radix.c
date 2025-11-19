@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/15 14:54:45 by jihad            ###   ########.fr       */
+/*   Updated: 2025/11/19 21:30:00 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 static int	get_max_bits(t_stack *stack)
 {
-	int	max;
-	int	bits;
+    int	max;
+    int	bits;
 
-	max = stack->size - 1;
-	bits = 0;
-	while ((max >> bits) != 0)
-		bits++;
-	return (bits);
+    max = stack->size - 1;
+    bits = 0;
+    while ((max >> bits) != 0)
+        bits++;
+    return (bits);
 }
 
 void	radix_sort(t_stack *a, t_stack *b)
 {
-	int	max_bits;
-	int	i;
-	int	j;
-	int	size;
+    int	i;
+    int	j;
+    int	size;
+    int	max_bits;
 
-	max_bits = get_max_bits(a);
-	i = 0;
-	while (i < max_bits)
-	{
-		size = a->size;
-		j = 0;
-		while (j < size)
-		{
-			if (((a->arr[0] >> i) & 1) == 0)
-				pb(a, b);
-			else
-				ra(a);
-			j++;
-		}
-		while (b->size > 0)
-			pa(a, b);
-		i++;
-	}
+    max_bits = get_max_bits(a);
+    i = 0;
+    while (i < max_bits)
+    {
+        size = a->size;
+        j = 0;
+        while (j < size)
+        {
+            if (((a->arr[0] >> i) & 1) == 1)
+                ra(a);
+            else
+                pb(a, b);
+            j++;
+        }
+        while (b->size > 0)
+            pa(a, b);
+        i++;
+    }
 }
