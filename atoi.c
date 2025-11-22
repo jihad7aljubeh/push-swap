@@ -6,7 +6,7 @@
 /*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/15 15:21:19 by jihad            ###   ########.fr       */
+/*   Updated: 2025/11/22 21:44:23 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_atoi_validate(long result, int sign)
 {
-	if ((sign == 1 && result > 2147483647)
-		|| (sign == -1 && result > 2147483648))
+	if ((sign == 1 && result > 2147483647) || (sign == -1
+			&& result > 2147483648))
 		ft_error();
 	return (1);
 }
