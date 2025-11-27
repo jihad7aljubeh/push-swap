@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/22 21:47:37 by jihad            ###   ########.fr       */
+/*   Created: 2025/11/26 15:59:30 by jalju-be          #+#    #+#             */
+/*   Updated: 2025/11/26 16:12:29 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int		is_sorted(t_stack *stack);
 int		ft_isdigit(int c);
 
 /* Utilities - utils2.c */
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
 void	normalize(t_stack *stack);
 
 /* String to Integer - atoi.c */

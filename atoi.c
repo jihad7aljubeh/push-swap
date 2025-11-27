@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 00:00:00 by your_login        #+#    #+#             */
-/*   Updated: 2025/11/22 21:44:23 by jihad            ###   ########.fr       */
+/*   Created: 2025/11/26 15:56:03 by jalju-be          #+#    #+#             */
+/*   Updated: 2025/11/26 16:12:37 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_atoi_validate(long result, int sign)
 {
-	if ((sign == 1 && result > 2147483647) || (sign == -1
-			&& result > 2147483648))
+	if ((sign == 1 && result > INT_MAX) || (sign == -1
+			&& result > (long)INT_MAX + 1))
 		ft_error();
 	return (1);
 }
@@ -33,14 +33,18 @@ static int	skip_whitespace(const char *str)
 static long	parse_number(const char *str, int *i, int sign)
 {
 	long	result;
+	int		start;
 
 	result = 0;
+	start = *i;
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
 		result = result * 10 + (str[*i] - '0');
 		ft_atoi_validate(result, sign);
 		(*i)++;
 	}
+	if (*i == start)
+		ft_error();
 	return (result);
 }
 
@@ -59,6 +63,8 @@ int	ft_atoi(const char *str)
 		if (str[i] == '-')
 			sign = -1;
 		i++;
+		if (!ft_isdigit(str[i]))
+			ft_error();
 	}
 	result = parse_number(str, &i, sign);
 	i += skip_whitespace(&str[i]);
