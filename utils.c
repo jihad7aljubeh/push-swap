@@ -3,26 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:04 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/26 15:59:05 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/01 02:53:02 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(void)
+void	ft_error(t_stack *a, t_stack *b)
 {
+	if (a && a->arr)
+		free_stack(a);
+	if (b && b->arr)
+		free_stack(b);
 	write(2, "Error\n", 6);
 	exit(1);
 }
 
-void	init_stack(t_stack *stack, int capacity)
+void	init_stack(t_stack *stack, int capacity, t_stack *a, t_stack *b)
 {
 	stack->arr = malloc(sizeof(int) * capacity);
 	if (!stack->arr)
-		ft_error();
+		ft_error(a, b);
 	stack->size = 0;
 	stack->capacity = capacity;
 }
@@ -48,9 +52,4 @@ int	is_sorted(t_stack *stack)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
 }

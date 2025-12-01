@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:57:49 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/26 15:57:51 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/01 02:54:13 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	init_stack(&a, argc - 1);
-	init_stack(&b, argc - 1);
-	parse_args(&a, argc, argv);
+	a.arr = NULL;
+	b.arr = NULL;
+	init_stack(&a, argc - 1, NULL, NULL);
+	init_stack(&b, argc - 1, &a, &b);
+	parse_args(&a, &b, argc, argv);
 	if (is_sorted(&a))
 	{
 		free_stack(&a);
 		free_stack(&b);
 		return (0);
 	}
-	normalize(&a);
+	normalize(&a, &a, &b);
 	sort_stack(&a, &b);
 	free_stack(&a);
 	free_stack(&b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:12 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/26 16:12:20 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/01 02:54:13 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ static void	assign_ranks(t_stack *stack, int *sorted)
 	}
 }
 
-void	normalize(t_stack *stack)
+void	normalize(t_stack *stack, t_stack *a, t_stack *b)
 {
 	int	i;
 	int	*sorted;
 
 	sorted = malloc(sizeof(int) * stack->size);
 	if (!sorted)
-		ft_error();
+		ft_error(a, b);
 	i = -1;
 	while (++i < stack->size)
 		sorted[i] = stack->arr[i];
