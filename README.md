@@ -5,7 +5,6 @@
 You must:
 
 - Implement a sorting program `push_swap` that prints the sequence of operations.
-- Optionally implement a checker program `checker` that validates a given list of operations.
 - Respect strict rules on allowed instructions and input handling.
 
 ---
@@ -14,9 +13,7 @@ You must:
 
 - [Overview](#overview)
 - [Project Objectives](#project-objectives)
-- [Program Descriptions](#program-descriptions)
-  - [`push_swap`](#push_swap)
-  - [`checker` (bonus)](#checker-bonus)
+- [Program Description](#program-description)
 - [Input & Error Handling](#input--error-handling)
 - [Allowed Operations](#allowed-operations)
 - [Algorithm](#algorithm)
@@ -64,7 +61,7 @@ The challenge is to generate an algorithm that:
 
 ---
 
-## Program Descriptions
+## Program Description
 
 ### `push_swap`
 
@@ -77,21 +74,6 @@ The challenge is to generate an algorithm that:
   - If the input is already sorted → print nothing and exit.
   - Otherwise → print a list of operations (one per line) that will sort stack `a`.
   - No other output or debug logs are allowed during evaluation.
-
-### `checker` (bonus)
-
-If you implemented the bonus part:
-
-- **Name:** `checker`
-- **Usage:**
-  ```bash
-  ./checker <list of integers>
-  ```
-  Then it reads operations from **stdin** and applies them to the stacks:
-  - If after applying all operations stack `a` is sorted and stack `b` is empty:
-    - Print `OK`
-  - Otherwise:
-    - Print `KO`
 
 ---
 
@@ -169,7 +151,7 @@ The exact strategy is up to you, but a common and efficient approach is:
 - **3 elements:**  
   - Hardcoded minimal instruction sequences depending on the order.
 - **Up to 5 elements:**  
-  - Push smallest elements to `b`, sort remaining 3 in `a`, then push back.
+  - Push the smallest elements to `b`, sort the remaining 3 in `a`, then push back.
 
 ### Bigger stacks
 
@@ -188,17 +170,14 @@ Some popular strategies:
   - Divide the range of values into “chunks”.
   - Move chunk by chunk from `a` to `b`, placing them in the right order, then push back.
 
-Your README can briefly describe what you chose:
-
-> In this implementation, small stacks (≤ 5 elements) are sorted with specific cases, while bigger stacks are sorted using an indexed **radix sort** algorithm to keep the number of operations relatively low.
-
-*(Adapt the line above to your real algorithm if needed.)*
+> In this implementation, small stacks (≤ 5 elements) are sorted with specific cases, while bigger stacks are sorted using an indexed **radix sort** algorithm to keep the number of operations relatively low.  
+> *(Adapt this line if your actual algorithm is different.)*
 
 ---
 
 ## Project Structure
 
-A typical `push_swap` repository might look like:
+A typical **mandatory-only** `push_swap` repository might look like:
 
 ```text
 .
@@ -216,11 +195,7 @@ A typical `push_swap` repository might look like:
 │   ├── sort_big.c
 │   ├── utils_stack.c
 │   └── utils_general.c
-├── bonus/
-│   ├── checker.c                  # (bonus)
-│   ├── checker_utils.c            # (bonus)
-│   └── get_next_line_*.[ch]       # (if used for reading stdin)
-├── libft/                         # (if you reuse your libft)
+├── libft/              # (if you reuse your libft)
 ├── Makefile
 └── README.md
 ```
@@ -235,7 +210,6 @@ With a standard `Makefile`:
 
 ```bash
 make          # builds push_swap
-make bonus    # (if implemented) builds checker
 make clean
 make fclean
 make re
@@ -244,7 +218,6 @@ make re
 This typically produces:
 
 - `push_swap` in the root directory
-- `checker` (for bonus)
 
 If you want to compile manually:
 
@@ -268,28 +241,14 @@ sa
 
 The printed operations are what a checker or evaluator will use to test your algorithm.
 
-To see the resulting sequence and also run it through your own checker:
+To verify the result using an external checker (not part of this repo):
 
 ```bash
 ./push_swap 4 67 3 87 23 9 | ./checker 4 67 3 87 23 9
 # Expected output (if sorted correctly): OK
 ```
 
-### Using `checker` alone (bonus)
-
-```bash
-# Manually type operations
-./checker 3 2 1
-sa
-rra
-<Ctrl-D>  # end of input
-```
-
-Or pipe a list of moves:
-
-```bash
-echo -e "pb\npb\nsa\npa\npa" | ./checker 3 2 1
-```
+*(Here `checker` is a separate tester program, not part of this mandatory project.)*
 
 ---
 
