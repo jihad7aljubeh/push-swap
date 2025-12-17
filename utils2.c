@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:12 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/01 02:54:13 by jihad            ###   ########.fr       */
+/*   Updated: 2025/12/17 19:02:18 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,23 @@ static void	assign_ranks(t_stack *stack, int *sorted)
 	}
 }
 
-void	normalize(t_stack *stack, t_stack *a, t_stack *b)
+void	normalize(t_stack *stack)
 {
 	int	i;
 	int	*sorted;
 
 	sorted = malloc(sizeof(int) * stack->size);
 	if (!sorted)
-		ft_error(a, b);
+		ft_error();
 	i = -1;
 	while (++i < stack->size)
 		sorted[i] = stack->arr[i];
 	bubble_sort(sorted, stack->size);
 	assign_ranks(stack, sorted);
 	free(sorted);
+}
+void	free_all(t_stack *a, t_stack *b)
+{
+	free_stack(a);
+	free_stack(b);
 }
