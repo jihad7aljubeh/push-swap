@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:12 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/17 19:02:18 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 16:33:11 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,14 @@ void	normalize(t_stack *stack)
 	assign_ranks(stack, sorted);
 	free(sorted);
 }
+
 void	free_all(t_stack *a, t_stack *b)
 {
 	free_stack(a);
 	free_stack(b);
+}
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
 }

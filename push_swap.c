@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:57:58 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/11/26 15:57:59 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 16:28:53 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,4 @@ void	parse_args(t_stack *a, int argc, char **argv)
 		i++;
 	}
 	a->size = argc - 1;
-	if (check_duplicates(a))
-		ft_error();
 }
