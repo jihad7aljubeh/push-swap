@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:56:03 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/21 16:29:01 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:13:38 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static int	ft_atoi_validate(long result, int sign)
 {
-	if ((sign == 1 && result > INT_MAX) || (sign == -1
-			&& result > (long)INT_MAX + 1))
-		ft_error();
+	if ((sign == 1 && result > INT_MAX)
+		|| (sign == -1 && result > (long)INT_MAX + 1))
+		return (0);
 	return (1);
 }
 
 static int	skip_whitespace(const char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
@@ -40,7 +40,8 @@ static long	parse_number(const char *str, int *i, int sign)
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
 		result = result * 10 + (str[*i] - '0');
-		ft_atoi_validate(result, sign);
+		if (!ft_atoi_validate(result, sign))
+			ft_error();
 		(*i)++;
 	}
 	if (*i == start)

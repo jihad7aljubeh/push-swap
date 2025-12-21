@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:04 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/21 16:33:59 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 18:53:55 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_valid_number(const char *str)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			has_digit = 1;
-		else if (str[i] != ' ' && str[i] != '\t')
+		else
 			return (0);
 		i++;
 	}

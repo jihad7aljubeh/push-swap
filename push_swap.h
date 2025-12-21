@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:59:30 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/21 16:31:38 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:12:35 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort_five(t_stack *a, t_stack *b);
 void	sort_stack(t_stack *a, t_stack *b);
 
 int		check_duplicates(t_stack *stack);
-void	parse_args(t_stack *a, int argc, char **argv);
+int		parse_args(t_stack *a, int argc, char **argv);
 
 void	ft_error(void);
 void	init_stack(t_stack *stack, int capacity);
@@ -55,7 +55,6 @@ void	free_stack(t_stack *stack);
 int		is_sorted(t_stack *stack);
 int		ft_isdigit(int c);
 void	validate_args(int argc, char **argv);
-void	parse_and_check(t_stack *a, t_stack *b, int argc, char **argv);
 void	free_stacks(t_stack *a, t_stack *b);
 
 void	normalize(t_stack *stack);

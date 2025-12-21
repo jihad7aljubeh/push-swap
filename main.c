@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:57:48 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/21 16:30:10 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:15:56 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,16 @@ void	validate_args(int argc, char **argv)
 			ft_error();
 		if (is_empty_or_whitespace(argv[i]))
 			ft_error();
-		if (!is_valid_number(argv[i]))
+		if (is_valid_number(argv[i]) == 0)
 			ft_error();
 		i++;
 	}
+}
+
+void	exit_it(t_stack *a, t_stack *b)
+{
+	free_all(a, b);
+	ft_error();
 }
 
 int	main(int argc, char **argv)
@@ -56,12 +62,10 @@ int	main(int argc, char **argv)
 	validate_args(argc, argv);
 	init_stack(&a, argc - 1);
 	init_stack(&b, argc - 1);
-	parse_args(&a, argc, argv);
+	if (!parse_args(&a, argc, argv))
+		exit_it(&a, &b);
 	if (check_duplicates(&a))
-	{
-		free_all(&a, &b);
-		ft_error();
-	}
+		exit_it(&a, &b);
 	if (is_sorted(&a))
 	{
 		free_all(&a, &b);
