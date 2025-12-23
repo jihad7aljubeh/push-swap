@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jihad <jihad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:56:03 by jalju-be          #+#    #+#             */
-/*   Updated: 2025/12/21 21:13:38 by jalju-be         ###   ########.fr       */
+/*   Updated: 2025/12/23 09:57:27 by jihad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static long	parse_number(const char *str, int *i, int sign)
 	{
 		result = result * 10 + (str[*i] - '0');
 		if (!ft_atoi_validate(result, sign))
-			ft_error();
+			return (0);
 		(*i)++;
 	}
 	if (*i == start)
@@ -68,8 +68,10 @@ int	ft_atoi(const char *str)
 			ft_error();
 	}
 	result = parse_number(str, &i, sign);
+	if (!result)
+		return (0);
 	i += skip_whitespace(&str[i]);
 	if (str[i] != '\0')
-		ft_error();
+		return (0);
 	return ((int)(result * sign));
 }
